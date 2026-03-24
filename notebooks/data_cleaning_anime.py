@@ -42,3 +42,29 @@ import numpy as np
 # Score-3: string Nombre de personnes ayant note 3 sur 10
 # Score-2: string Nombre de personnes ayant note 2 sur 10
 # Score-1: string Nombre de personnes ayant note 1 sur 10
+
+anime_df = pd.read_csv("./data/anime.csv")
+
+print(f"Dataset shape: {anime_df.shape}\n")  # (17562, 35)
+
+print("Colonnes du dataset:")
+print(anime_df.columns.tolist(), "\n")
+
+print("Résumé info():")
+print(anime_df.info(), "\n")
+
+pd.set_option('display.max_columns', None)
+print("Aperçu des 5 premières lignes:")
+print(anime_df.head(), "\n")
+
+print("Nombre de valeurs uniques par colonne:")
+for col in anime_df.columns:
+    unique_count = anime_df[col].nunique()
+    print(f"{col}: {unique_count} valeurs uniques")
+
+print("\nDoublons sur MAL_ID:", anime_df["MAL_ID"].duplicated().sum())
+
+print("\nValeurs manquantes par colonne:")
+print(anime_df.isna().sum())
+
+
