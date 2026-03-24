@@ -11,3 +11,7 @@ import numpy as np
 # Score: Note des utilisateurs moyennes sur 10
 # Genres: Comma separated list of genres for this anime.
 # Sypnopsis: string with the synopsis of the anime.
+
+
+
+anime_with_synopsis_df =  df.
