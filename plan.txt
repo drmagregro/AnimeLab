@@ -1,0 +1,10 @@
+Tache 1: Audit saved
+Tache 2: Nettoyage
+Tache 3: Verife
+Si pb verife:
+    Tache 4: autres Nettoyage?
+Tache 5: Enrichessement, feature engenering
+Tache 6: validation
+Si non valisation:
+    Tache 7: Rapport Erreure
+Tache 8: Export gold data csv et json

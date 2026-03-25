@@ -1,4 +1,7 @@
-Pandas
-NumPy
+--constraint https://raw.githubusercontent.com/apache/airflow/constraints-2.8.1/constraints-3.11.txt
+
+apache-airflow==2.8.1
+pandas
+numpy
 matplotlib
 seaborn
