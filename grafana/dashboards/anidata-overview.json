@@ -1,160 +1,481 @@
 {
-  "annotations": { "list": [] },
+  "uid": "anidata-main",
+  "title": "AniData Lab - Dashboard Anime/Manga",
+  "tags": ["anidata", "anime"],
+  "timezone": "browser",
   "editable": true,
+  "schemaVersion": 39,
+  "version": 1,
+  "time": {
+    "from": "1917-01-01T00:00:00.000Z",
+    "to": "2026-12-31T23:59:59.000Z"
+  },
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
+  "refresh": "",
+  "templating": { "list": [] },
+  "annotations": { "list": [] },
   "links": [],
   "panels": [
     {
-      "datasource": { "type": "datasource", "uid": "-- Mixed --" },
-      "gridPos": { "h": 4, "w": 24, "x": 0, "y": 0 },
       "id": 1,
-      "options": {
-        "code": { "language": "plaintext", "showLineNumbers": false },
-        "content": "# 🎌 AniData Lab — Dashboard Anime/Manga\n\nBienvenue ! Ce dashboard se remplira automatiquement une fois les données indexées dans Elasticsearch.\n\n**Étapes :** Indexer les données → Les panneaux ci-dessous s'activent → Créez vos propres visualisations !",
-        "mode": "markdown"
-      },
+      "type": "text",
       "title": "",
+      "gridPos": { "h": 3, "w": 24, "x": 0, "y": 0 },
       "transparent": true,
-      "type": "text"
+      "options": {
+        "mode": "markdown",
+        "content": "# 🎌 AniData Lab — Dashboard Anime/Manga\nDonnées MyAnimeList indexées dans Elasticsearch. Explorez les tendances, studios et genres."
+      }
     },
     {
-      "datasource": { "type": "elasticsearch", "uid": "${DS_ELASTICSEARCH_-_ANIME}" },
-      "fieldConfig": {
-        "defaults": {
-          "color": { "mode": "palette-classic" },
-          "mappings": [],
-          "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }] }
-        }
-      },
-      "gridPos": { "h": 6, "w": 6, "x": 0, "y": 4 },
       "id": 2,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": { "calcs": ["count"], "fields": "", "values": false },
-        "textMode": "auto"
-      },
-      "title": "Total animes indexés",
       "type": "stat",
+      "title": "Total animes",
+      "gridPos": { "h": 4, "w": 4, "x": 0, "y": 3 },
+      "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
       "targets": [
         {
-          "datasource": { "type": "elasticsearch" },
-          "metrics": [{ "type": "count", "id": "1" }],
+          "refId": "A",
+          "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
           "query": "*",
-          "refId": "A"
+          "timeField": "aired_start",
+          "metrics": [
+            { "type": "count", "id": "1" }
+          ],
+          "bucketAggs": []
         }
-      ]
-    },
-    {
-      "datasource": { "type": "elasticsearch", "uid": "${DS_ELASTICSEARCH_-_ANIME}" },
+      ],
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "palette-classic" },
-          "mappings": [],
-          "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }] }
-        }
-      },
-      "gridPos": { "h": 6, "w": 6, "x": 6, "y": 4 },
-      "id": 3,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": { "calcs": ["mean"], "fields": "/^score$/", "values": false },
-        "textMode": "auto"
-      },
-      "title": "Score moyen",
-      "type": "stat",
-      "targets": [
-        {
-          "datasource": { "type": "elasticsearch" },
-          "metrics": [{ "type": "avg", "id": "1", "field": "score" }],
-          "query": "*",
-          "refId": "A"
-        }
-      ]
-    },
-    {
-      "datasource": { "type": "elasticsearch", "uid": "${DS_ELASTICSEARCH_-_ANIME}" },
-      "fieldConfig": {
-        "defaults": {
-          "color": { "mode": "palette-classic" },
-          "custom": { "hideFrom": { "legend": false, "tooltip": false, "viz": false } },
-          "mappings": []
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "blue", "value": null }
+            ]
+          }
         },
         "overrides": []
       },
-      "gridPos": { "h": 10, "w": 12, "x": 12, "y": 4 },
-      "id": 4,
       "options": {
-        "displayLabels": ["name", "percent"],
-        "legend": { "displayMode": "list", "placement": "right" },
-        "pieType": "donut",
         "reduceOptions": { "calcs": ["count"], "fields": "", "values": false },
-        "tooltip": { "mode": "single" }
-      },
-      "title": "Répartition par type",
-      "type": "piechart",
-      "targets": [
-        {
-          "datasource": { "type": "elasticsearch" },
-          "metrics": [{ "type": "count", "id": "1" }],
-          "bucketAggs": [{ "type": "terms", "id": "2", "field": "type.keyword", "settings": { "size": "10", "order": "desc", "orderBy": "_count" } }],
-          "query": "*",
-          "refId": "A"
-        }
-      ]
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "auto",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      }
     },
     {
-      "datasource": { "type": "elasticsearch", "uid": "${DS_ELASTICSEARCH_-_ANIME}" },
+      "id": 3,
+      "type": "stat",
+      "title": "Score moyen",
+      "gridPos": { "h": 4, "w": 4, "x": 4, "y": 3 },
+      "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+          "query": "score:>0",
+          "timeField": "aired_start",
+          "metrics": [
+            { "type": "avg", "id": "1", "field": "score" }
+          ],
+          "bucketAggs": []
+        }
+      ],
       "fieldConfig": {
         "defaults": {
-          "color": { "mode": "palette-classic" },
-          "custom": {
-            "axisBorderShow": false,
-            "axisLabel": "",
-            "fillOpacity": 80,
-            "gradientMode": "none",
-            "lineWidth": 1,
-            "scaleDistribution": { "type": "linear" }
-          },
-          "mappings": [],
-          "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }] }
-        }
+          "decimals": 2,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null }
+            ]
+          }
+        },
+        "overrides": []
       },
-      "gridPos": { "h": 10, "w": 12, "x": 0, "y": 10 },
-      "id": 5,
       "options": {
+        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "auto"
+      }
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "Total membres",
+      "gridPos": { "h": 4, "w": 4, "x": 8, "y": 3 },
+      "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+          "query": "*",
+          "timeField": "aired_start",
+          "metrics": [
+            { "type": "sum", "id": "1", "field": "members" }
+          ],
+          "bucketAggs": []
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "purple", "value": null }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "auto"
+      }
+    },
+    {
+      "id": 5,
+      "type": "piechart",
+      "title": "Répartition par type (TV, OVA, Movie...)",
+      "gridPos": { "h": 9, "w": 12, "x": 12, "y": 3 },
+      "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+          "query": "*",
+          "timeField": "aired_start",
+          "metrics": [
+            { "type": "count", "id": "1" }
+          ],
+          "bucketAggs": [
+            {
+              "type": "terms",
+              "id": "2",
+              "field": "type",
+              "settings": {
+                "size": "10",
+                "order": "desc",
+                "orderBy": "_count",
+                "min_doc_count": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "options": {
+        "pieType": "donut",
+        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "legend": { "displayMode": "list", "placement": "right" },
+        "tooltip": { "mode": "single" },
+        "displayLabels": ["name", "percent"]
+      }
+    },
+    {
+      "id": 6,
+      "type": "barchart",
+      "title": "Top 10 studios",
+      "gridPos": { "h": 9, "w": 12, "x": 0, "y": 7 },
+      "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+          "query": "*",
+          "timeField": "aired_start",
+          "metrics": [
+            { "type": "count", "id": "1" }
+          ],
+          "bucketAggs": [
+            {
+              "type": "terms",
+              "id": "2",
+              "field": "main_studio",
+              "settings": {
+                "size": "10",
+                "order": "desc",
+                "orderBy": "_count",
+                "min_doc_count": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
         "barRadius": 0.1,
         "barWidth": 0.7,
         "groupWidth": 0.7,
-        "legend": { "displayMode": "list", "placement": "bottom" },
-        "orientation": "horizontal",
+        "legend": { "displayMode": "hidden" },
         "tooltip": { "mode": "single" },
         "xTickLabelRotation": 0
       },
-      "title": "Top 10 studios (par nombre d'animes)",
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 7,
       "type": "barchart",
+      "title": "Top 15 genres",
+      "gridPos": { "h": 9, "w": 12, "x": 12, "y": 12 },
+      "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
       "targets": [
         {
-          "datasource": { "type": "elasticsearch" },
-          "metrics": [{ "type": "count", "id": "1" }],
-          "bucketAggs": [{ "type": "terms", "id": "2", "field": "studios.keyword", "settings": { "size": "10", "order": "desc", "orderBy": "_count" } }],
+          "refId": "A",
+          "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
           "query": "*",
-          "refId": "A"
+          "timeField": "aired_start",
+          "metrics": [
+            { "type": "count", "id": "1" }
+          ],
+          "bucketAggs": [
+            {
+              "type": "terms",
+              "id": "2",
+              "field": "main_genre",
+              "settings": {
+                "size": "15",
+                "order": "desc",
+                "orderBy": "_count",
+                "min_doc_count": "1"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "barRadius": 0.1,
+        "barWidth": 0.7,
+        "legend": { "displayMode": "hidden" },
+        "tooltip": { "mode": "single" }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 8,
+      "type": "barchart",
+      "title": "Score moyen par type",
+      "gridPos": { "h": 9, "w": 12, "x": 0, "y": 16 },
+      "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+          "query": "score:>0",
+          "timeField": "aired_start",
+          "metrics": [
+            { "type": "avg", "id": "1", "field": "score" }
+          ],
+          "bucketAggs": [
+            {
+              "type": "terms",
+              "id": "2",
+              "field": "type",
+              "settings": {
+                "size": "10",
+                "order": "desc",
+                "orderBy": "1",
+                "min_doc_count": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "barRadius": 0.1,
+        "barWidth": 0.7,
+        "legend": { "displayMode": "hidden" },
+        "tooltip": { "mode": "single" }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" },
+          "decimals": 2
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 9,
+      "type": "piechart",
+      "title": "Répartition par catégorie de score",
+      "gridPos": { "h": 9, "w": 12, "x": 12, "y": 21 },
+      "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+          "query": "*",
+          "timeField": "aired_start",
+          "metrics": [
+            { "type": "count", "id": "1" }
+          ],
+          "bucketAggs": [
+            {
+              "type": "terms",
+              "id": "2",
+              "field": "score_category",
+              "settings": {
+                "size": "5",
+                "order": "desc",
+                "orderBy": "_count",
+                "min_doc_count": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "options": {
+        "pieType": "donut",
+        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "legend": { "displayMode": "list", "placement": "right" },
+        "displayLabels": ["name", "percent"]
+      }
+    },
+    {
+      "id": 10,
+      "type": "piechart",
+      "title": "Studios : Top / Mid / Indie",
+      "gridPos": { "h": 9, "w": 12, "x": 0, "y": 25 },
+      "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+          "query": "studio_tier:*",
+          "timeField": "aired_start",
+          "metrics": [
+            { "type": "count", "id": "1" }
+          ],
+          "bucketAggs": [
+            {
+              "type": "terms",
+              "id": "2",
+              "field": "studio_tier",
+              "settings": {
+                "size": "5",
+                "order": "desc",
+                "orderBy": "_count",
+                "min_doc_count": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "options": {
+        "pieType": "donut",
+        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "legend": { "displayMode": "list", "placement": "right" },
+        "displayLabels": ["name", "percent"]
+      }
+    },
+    {
+      "id": 11,
+      "type": "barchart",
+      "title": "Animes par décennie",
+      "gridPos": { "h": 9, "w": 12, "x": 12, "y": 30 },
+      "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+          "query": "decade:>0",
+          "timeField": "aired_start",
+          "metrics": [
+            { "type": "count", "id": "1" }
+          ],
+          "bucketAggs": [
+            {
+              "type": "terms",
+              "id": "2",
+              "field": "decade",
+              "settings": {
+                "size": "20",
+                "order": "asc",
+                "orderBy": "_key",
+                "min_doc_count": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "options": {
+        "orientation": "vertical",
+        "barRadius": 0.1,
+        "barWidth": 0.7,
+        "legend": { "displayMode": "hidden" },
+        "tooltip": { "mode": "single" }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "fixedColor": "blue", "mode": "fixed" }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 12,
+      "type": "barchart",
+      "title": "Top 10 animes les plus abandonnés (drop ratio)",
+      "gridPos": { "h": 9, "w": 12, "x": 0, "y": 34 },
+      "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": { "type": "elasticsearch", "uid": "anidata-es" },
+          "query": "drop_ratio:>0",
+          "timeField": "aired_start",
+          "metrics": [
+            { "type": "avg", "id": "1", "field": "drop_ratio" }
+          ],
+          "bucketAggs": [
+            {
+              "type": "terms",
+              "id": "2",
+              "field": "main_genre",
+              "settings": {
+                "size": "10",
+                "order": "desc",
+                "orderBy": "1",
+                "min_doc_count": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "options": {
+        "orientation": "horizontal",
+        "barRadius": 0.1,
+        "barWidth": 0.7,
+        "legend": { "displayMode": "hidden" },
+        "tooltip": { "mode": "single" }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "fixedColor": "red", "mode": "fixed" },
+          "unit": "percentunit",
+          "decimals": 1
+        },
+        "overrides": []
+      }
     }
-  ],
-  "schemaVersion": 39,
-  "tags": ["anidata", "anime"],
-  "templating": { "list": [] },
-  "time": { "from": "now-5y", "to": "now" },
-  "title": "🎌 AniData Lab — Vue d'ensemble",
-  "uid": "anidata-overview"
+  ]
 }
