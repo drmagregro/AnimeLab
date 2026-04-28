@@ -87,9 +87,3 @@ jobs:
           name: coverage-report
           path: coverage.xml
           retention-days: 7
-  docker-compose:
-    name: Launch docker build on gh
-    runs-on: ubuntu-latest
-    steps:
-      - name: compose-up
-        run: docker compose -f ../docker-compose.yml up
