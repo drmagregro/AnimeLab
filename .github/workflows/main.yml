@@ -92,4 +92,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: compose-up
-        run: docker compose -f ./docker-compose.yml up
+        run: docker compose -f ../docker-compose.yml up
