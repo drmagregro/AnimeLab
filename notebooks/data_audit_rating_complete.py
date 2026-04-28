@@ -1,6 +1,6 @@
 import pandas as pd
 
-# Audit
+# Audit rating_complete.csv
 
 #Columns are: user_id,anime_id,rating
 # user_id: User's ID
