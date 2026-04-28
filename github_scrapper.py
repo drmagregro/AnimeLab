@@ -35,7 +35,7 @@ def check_run_status(run: dict) -> str:
         return f"En cours ({status})"
     return f"Terminé : {conclusion}"
 
-
+# Test final
 # --- Utilisation ---
 run = get_latest_run(WORKFLOW_NAME, branch="main")
 if run:
