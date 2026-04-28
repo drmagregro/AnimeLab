@@ -5,7 +5,7 @@ gh_token_file = open("token/gh-token.txt")
 GITHUB_TOKEN = gh_token_file.readline()
 OWNER = "drmagregro"       # ou votre username
 REPO = "AnimeLab"
-WORKFLOW_NAME = "ci.yml"         # nom du fichier workflow, ou son ID
+WORKFLOW_NAME = "workflows/main.yml"         # nom du fichier workflow, ou son ID
 
 headers = {
     "Authorization": f"Bearer {GITHUB_TOKEN}",
